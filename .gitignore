@@ -2,7 +2,14 @@
 memory/*.md
 !memory/.gitkeep
 notes/*.md
+notes/*/
 !notes/.gitkeep
+
+# 設定ファイル（機密情報を含む）
+config.local.json
+
+# xangi（セッション・スケジュール等の個人設定）
+.xangi/
 
 # OS
 .DS_Store
@@ -28,3 +35,10 @@ skills/calendar/manual_events.json
 # ワークスペースRAG
 *.db
 *.db-journal
+
+# クラッシュダンプ
+core.*
+
+# パッケージファイル
+*.deb
+*.rpm

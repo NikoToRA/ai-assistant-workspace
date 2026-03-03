@@ -1,0 +1,54 @@
+sites:
+  # === tech: 技術全般 ===
+  - name: "Hacker News"
+    url: "https://hnrss.org/frontpage?count=10"
+    type: rss
+    category: tech
+
+  - name: "Publickey"
+    url: "https://www.publickey1.jp/atom.xml"
+    type: rss
+    category: tech
+
+  - name: "はてなテクノロジー"
+    url: "https://b.hatena.ne.jp/hotentry/it.rss"
+    type: rss
+    category: tech
+
+  - name: "Zenn トレンド"
+    url: "https://zenn.dev/feed"
+    type: rss
+    category: tech
+
+  # === ai: AI・機械学習 ===
+  - name: "MIT Technology Review AI"
+    url: "https://www.technologyreview.com/feed/"
+    type: rss
+    category: ai
+
+  - name: "The Batch (DeepLearning.AI)"
+    url: "https://www.deeplearning.ai/the-batch/feed/"
+    type: rss
+    category: ai
+
+  # === medical: 医療・ヘルステック ===
+  - name: "Med IT Tech"
+    url: "https://medit.tech/feed/"
+    type: rss
+    category: medical
+
+  - name: "日経メディカル"
+    url: "https://medical.nikkeibp.co.jp/inc/all/feed/rss_all.xml"
+    type: rss
+    category: medical
+
+  # === gadget: ガジェット・IoT ===
+  - name: "GIGAZINE"
+    url: "https://gigazine.net/news/rss_2.0/"
+    type: rss
+    category: gadget
+
+  - name: "Engadget 日本版"
+    url: "https://www.gizmodo.jp/feed/"
+    type: rss
+    category: gadget

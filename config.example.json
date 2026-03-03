@@ -1,0 +1,17 @@
+{
+  "notion": {
+    "api_key_file": "~/.config/notion/api_key",
+    "databases": {
+      "todo": "YOUR_NOTION_TODO_DB_ID",
+      "memory": "YOUR_NOTION_MEMORY_DB_ID"
+    }
+  },
+  "google": {
+    "service_account_file": "~/.config/google/sheets-service-account.json",
+    "spreadsheet_id": "YOUR_GOOGLE_SPREADSHEET_ID",
+    "calendars": {
+      "toujoku": "YOUR_TOUJOKU_CALENDAR_ID@group.calendar.google.com",
+      "nikkin": "YOUR_NIKKIN_CALENDAR_ID@group.calendar.google.com"
+    }
+  }
+}
