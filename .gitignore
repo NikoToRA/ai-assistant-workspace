@@ -36,6 +36,13 @@ skills/calendar/manual_events.json
 *.db
 *.db-journal
 
+# チーム開発（実行時データ）
+skills/team-dev/task_queue.json
+skills/team-dev/reports.json
+skills/team-dev/leader.log
+skills/team-dev/leader.pid
+team-projects/
+
 # クラッシュダンプ
 core.*
 

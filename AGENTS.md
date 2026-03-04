@@ -115,6 +115,7 @@
 - **xangi設定** — 「設定確認して」「タイムアウト変えて」 → `skills/xangi-settings/SKILL.md`
 - **ヘルスアドバイザー** — 「健康チェック」「食事記録して」「運動記録して」 → `skills/health-advisor/SKILL.md`
 - **カレンダー** — 「今日の予定」「明日の予定」「スケジュール確認」「シフト登録して」「来月のシフト」 → `skills/calendar/SKILL.md`
+- **チーム開発** — 「開発して」「チームに任せて」「チーム状況」 → `skills/team-dev/SKILL.md`
 - **自発的おしゃべり** — 「話しかけて」で手動発動も可能 → `skills/spontaneous-talk/SKILL.md`
 
 ---
