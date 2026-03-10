@@ -1,0 +1,191 @@
+/* @theme wonder-drill */
+
+/* =====================================================
+   Wonder Drill 株式会社 — Marp カスタムテーマ
+   ブランドカラー: #002d80（紺）/ #0055cc（青）/ #007be8（明青）
+   ===================================================== */
+
+section {
+  background: linear-gradient(160deg, #f2f8ff 0%, #ddeeff 100%);
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  color: #1a2e4a;
+  padding: 0 !important;
+  position: relative;
+  overflow: hidden;
+  font-size: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- ヘッダー ---- */
+h1 {
+  background: linear-gradient(135deg, #002d80, #0055cc, #007be8);
+  color: white;
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: 0;
+  padding: 12px 44px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 3px 8px rgba(0,50,140,0.25);
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+h2 {
+  font-size: 0.95em;
+  color: #002d80;
+  border-bottom: 2px solid rgba(0,80,200,0.22);
+  padding-bottom: 4px;
+  margin: 0 0 8px 0;
+}
+
+/* ---- ボディラッパー ---- */
+.body {
+  padding: 12px 44px 46px;
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* ---- フッター ---- */
+.ft {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 36px;
+  background: rgba(0,50,160,0.08);
+  border-top: 1.5px solid rgba(0,100,200,0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 44px;
+  font-size: 0.62em;
+  color: #0044aa;
+  box-sizing: border-box;
+}
+.ft img { height: 17px; }
+
+/* ---- グリッドレイアウト ---- */
+.g2  { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.g3  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.g64 { display: grid; grid-template-columns: 6fr 4fr; gap: 12px; }
+
+/* ---- カードボックス ---- */
+/* .bw 白ボックス（汎用） */
+.bw {
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(0,100,200,0.15);
+  border-radius: 8px;
+  padding: 11px 15px;
+  box-shadow: 0 2px 6px rgba(0,50,150,0.07);
+}
+
+/* .bb 青ボーダー左線 */
+.bb {
+  background: rgba(0,70,200,0.07);
+  border-left: 4px solid #0055cc;
+  border-radius: 0 8px 8px 0;
+  padding: 11px 15px;
+}
+
+/* .bg 緑ボックス（成功・達成） */
+.bg {
+  background: linear-gradient(135deg,#f0fff6,#ccffe0);
+  border: 1.5px solid #009944;
+  border-radius: 8px;
+  padding: 11px 15px;
+}
+
+/* .by 黄ボックス（注意・推奨） */
+.by {
+  background: linear-gradient(135deg,#fffbe6,#fff3bb);
+  border: 1.5px solid #cc9900;
+  border-radius: 8px;
+  padding: 11px 15px;
+}
+
+/* .br 赤ボックス（警告・リスク） */
+.br {
+  background: linear-gradient(135deg,#fff5f5,#ffe8e8);
+  border: 1.5px solid #cc2200;
+  border-radius: 8px;
+  padding: 11px 15px;
+}
+
+/* ---- テーブル ---- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.87em;
+  background: rgba(255,255,255,0.75);
+  border-radius: 8px;
+  overflow: hidden;
+}
+th {
+  background: #002d80;
+  color: white;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: bold;
+}
+th:last-child, td:last-child { text-align: right; }
+td {
+  padding: 7px 12px;
+  border-bottom: 1px solid rgba(0,80,200,0.1);
+  vertical-align: middle;
+}
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: rgba(0,80,200,0.04); }
+
+/* .tt テーブル合計行（紺） */
+.tt td { background: #002d80 !important; color: white !important; font-weight: bold; font-size: 1.02em; }
+
+/* .ty テーブル注目行（黄） */
+.ty td { background: #fff3bb !important; font-weight: bold; color: #7a4a00 !important; }
+
+/* ---- テキスト ---- */
+p  { margin: 5px 0; line-height: 1.5; }
+ul { margin: 4px 0; padding-left: 17px; }
+li { margin: 3px 0; line-height: 1.5; }
+small { font-size: 0.76em; color: #666; }
+
+/* ---- デコレーション ---- */
+/* .al アクセントライン（グラデーション） */
+.al {
+  height: 3px;
+  background: linear-gradient(90deg,#0033aa,#0088ee,#00ccff);
+  border-radius: 2px;
+  margin: 8px 0;
+}
+
+/* .sep セパレーター */
+.sep {
+  height: 1px;
+  background: rgba(0,80,200,0.15);
+  margin: 8px 0;
+}
+
+/* ---- ステップバッジ ---- */
+/* .sb 丸番号バッジ */
+.sb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  background: #002d80;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 0.85em;
+  margin-right: 8px;
+}
+
+/* .sr ステップ行（バッジ + テキスト） */
+.sr { display: flex; align-items: flex-start; margin: 6px 0; }
+
+/* .st ステップテキスト */
+.st { flex: 1; padding-top: 3px; }

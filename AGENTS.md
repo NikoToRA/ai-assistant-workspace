@@ -117,6 +117,10 @@
 - **カレンダー** — 「今日の予定」「明日の予定」「スケジュール確認」「シフト登録して」「来月のシフト」 → `skills/calendar/SKILL.md`
 - **チーム開発** — 「開発して」「チームに任せて」「チーム状況」 → `skills/team-dev/SKILL.md`
 - **自発的おしゃべり** — 「話しかけて」で手動発動も可能 → `skills/spontaneous-talk/SKILL.md`
+- **arXiv論文調査** — 「論文調べて」「最新AI論文」「arXiv検索」 → `skills/arxiv/SKILL.md`
+- **テックニュース** — 「テックニュース」「最新AI情報」「技術ニュースまとめて」 → `skills/tech-news-curation/SKILL.md`
+- **Wonder Drillスライド基盤** — デザインテーマ・テンプレート管理（他スキルから参照） → `skills/wonder-drill-slides/SKILL.md`
+- **ICT補助金提案書** — 「補助金の提案書作って」「〇〇病院向けの提案書」「ICT補助金の資料」 → `skills/ict-subsidy-proposal/SKILL.md`
 
 ---
 
