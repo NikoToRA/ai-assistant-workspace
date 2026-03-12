@@ -1,11 +1,44 @@
 ---
 name: calendar
-description: カレンダー予定を確認するスキル。ICS（Googleカレンダー等）と手動追加（画像読み取り）を統合。「今日の予定」「明日の予定」「カレンダー画像送って」「スケジュール確認」で使用。`/calendar` で発動。
+description: カレンダー予定を確認・追加するスキル。ICS（Googleカレンダー等）と手動追加（画像読み取り）を統合。「今日の予定」「明日の予定」「カレンダー画像送って」「スケジュール確認」「〇〇を予定に入れて」で使用。`/calendar` で発動。
 ---
 
 # calendar スキル
 
 ICSカレンダー（Googleカレンダー等）＋ 手動追加の予定（画像読み取り等）を統合して予定を確認する。
+
+## 予定の追加（Googleカレンダー API）
+
+「〇〇をカレンダーに入れて」「予定を登録して」と言われたら **Googleカレンダー（main）に直接登録する**。
+manual_events.jsonやNotionではなく、Google Calendar APIを使うこと。
+
+```python
+# skills/calendar/ で uv run python - として実行
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "lib"))
+from config import get_google_service_account_file, get_google_calendar_id
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+
+SERVICE_ACCOUNT_FILE = get_google_service_account_file()
+SCOPES = ["https://www.googleapis.com/auth/calendar"]
+CALENDAR_ID = get_google_calendar_id("main")  # super206cc@gmail.com
+
+creds = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+service = build("calendar", "v3", credentials=creds)
+
+event = {
+    "summary": "イベント名",
+    "description": "メモ",
+    "start": {"dateTime": "2026-03-13T21:00:00+09:00", "timeZone": "Asia/Tokyo"},
+    "end":   {"dateTime": "2026-03-13T22:00:00+09:00", "timeZone": "Asia/Tokyo"},
+}
+result = service.events().insert(calendarId=CALENDAR_ID, body=event).execute()
+print(f"✅ 登録完了: {result.get('htmlLink')}")
+```
+
+終了時刻が不明な場合は開始から1時間後をデフォルトとする。
 
 ## セットアップ
 

@@ -1,20 +1,23 @@
 ---
 name: wonder-drill-slides
-description: Wonder Drill株式会社のブランドデザインでMarpスライドを作成する基盤スキル。カスタムCSSテーマ・テンプレートを管理。補助金提案書・会社資料などの上位スキルから参照される。
+description: Wonder Drill株式会社のブランドデザインでHTMLスライドを作成する基盤スキル。CSSテーマ・HTMLテンプレートを管理。補助金提案書・会社資料などの上位スキルから参照される。
 ---
 
 # Wonder Drill スライドデザイン基盤
 
-Wonder Drill 株式会社のブランドに統一されたMarpスライドを作成するための基盤。
+Wonder Drill 株式会社のブランドに統一されたHTMLスライドを作成するための基盤。
 補助金提案書・一般会社資料など、すべての資料はこのテーマを使う。
+
+**方式: 純粋なHTML/CSS（Marpは使わない）**
 
 ## ファイル構成
 
 ```
 skills/wonder-drill-slides/
-  SKILL.md      ← このファイル
-  theme.css     ← Marpカスタムテーマ（全CSSここに集約）
-  template.md   ← スターターテンプレート（新規資料作成時にコピー）
+  SKILL.md       ← このファイル
+  template.html  ← スターターテンプレート（新規資料作成時にコピー）
+  theme.css      ← レガシー（Marp時代の残骸。参照不要）
+  template.md    ← レガシー（Marp時代の残骸。参照不要）
 ```
 
 ## ブランドカラー
@@ -65,30 +68,47 @@ skills/wonder-drill-slides/
 | `.al` | グラデーションアクセントライン（区切りに使用） |
 | `.sep` | 薄い区切り線（ステップ間など） |
 
-## Marpビルドコマンド
+## HTML → PDF 変換コマンド
 
 ```bash
-# PDF生成（画像ファイルを読み込む場合は --allow-local-files 必須）
-npx @marp-team/marp-cli <ファイル>.md \
-  --theme skills/wonder-drill-slides/theme.css \
-  --pdf \
-  --allow-local-files
-
-# プレビュー確認用（PNG画像として書き出し）
-npx @marp-team/marp-cli <ファイル>.md \
-  --theme skills/wonder-drill-slides/theme.css \
-  --images png \
-  --allow-local-files
+# Chromiumでheadless PDF生成（ワークスペースルートから実行）
+chromium --headless --disable-gpu --no-sandbox \
+  --print-to-pdf=notes/<ファイル名>.pdf \
+  --no-pdf-header-footer \
+  --run-all-compositor-stages-before-draw \
+  "file:///$(pwd)/notes/<ファイル名>.html"
 ```
-
-※ コマンドはワークスペースルートから実行すること。
 
 ## 新規資料を作成する手順
 
-1. `skills/wonder-drill-slides/template.md` を目的のパスにコピー
-2. フロントマターの日付・タイトルを書き換える
-3. スライド内容を編集（テーマのCSSクラスを活用）
-4. ビルドコマンドでPDF生成
+1. `skills/wonder-drill-slides/template.html` を `notes/<病院名>-proposal.html` にコピー
+2. `{{年月}}` などのプレースホルダーを実際の値に置換
+3. スライド内容を編集（CSSクラスを活用）
+4. 上記コマンドでPDF生成
+5. `MEDIA:notes/<病院名>-proposal.pdf` でDiscordに送信
+
+## スライド構造
+
+各スライドは `<section class="slide">` 要素：
+
+```html
+<!-- 表紙 -->
+<section class="slide slide-cover">
+  <!-- 左サイドバー（260px紺グラデ） + 右コンテンツ -->
+</section>
+
+<!-- 本文スライド -->
+<section class="slide">
+  <h1>スライドタイトル</h1>
+  <div class="body">
+    <!-- コンテンツ -->
+  </div>
+  <div class="ft">
+    <img src="wonder-drill-logo.png">
+    <span>support@wonder-drill.com</span>
+  </div>
+</section>
+```
 
 ## ロゴ・アセット
 
@@ -96,40 +116,29 @@ npx @marp-team/marp-cli <ファイル>.md \
 |----------|------|
 | Wonder Drillロゴ | `notes/wonder-drill-logo.png` |
 | コエレクアプリ画像 | `notes/koereku-app.png` |
+| コエレクデバイス画像 | `notes/coelec-device.png` |
 
-スライドから参照する際はワークスペースルートからの相対パスで指定。
+スライドHTMLを `notes/` に置く場合、画像は相対パス（`wonder-drill-logo.png`）で参照できる。
 
 ## デザイン原則（余白・レイアウト）
 
-守山病院提案書（`notes/moriyama-proposal.md`）での壁打ちで確立した原則。
-
 ### 構造
-- **表紙**: 左サイドバー（260px、紺グラデ）＋ 右コンテンツエリア（`flex-direction: row`）
+- **表紙**: 左サイドバー（260px、紺グラデ）＋ 右コンテンツエリア（`.slide-cover`）
 - **本文スライド**: `h1`（ヘッダー帯）＋ `<div class="body">` ＋ `<div class="ft">` の3段構成
 - **body内**: `flex:1; min-height:0` でスライド高さを使い切る
 
 ### 余白・間隔
 - **グリッドの gap**: `10px`（カード間）
-- **テーブル直後の .al**: `flex-shrink:0` を付ける（押しつぶされ防止）
-- **カードが縦に並ぶ場合**: `gap:6px`（テーブルと隣接する場合）
+- **カードが縦に並ぶ場合**: `gap:6px`
 - **重要ボックス（.bb）padding**: `16px 18px`
 - **標準ボックス（.by/.bw）padding**: `14px 18px`
-- **小ボックス**: `8px 12px`
 
 ### フォントサイズ
-- **本文**: `1.05em`（やや大きめが読みやすい）
+- **本文**: `1.05em`
 - **h2 見出し**: `1.1〜1.2em`
 - **補足・キャプション**: `0.82〜0.88em`
-- **テーブル（広いもの）**: `0.9em`、通常: `0.95〜1em`
-- **3カラム内ステップバッジ**: `font-size:0.8em`（詰まるため）
 - **大数字（ハイライト）**: `2.2em; font-weight:900`
-
-### 高さ制御（はみ出し対策）
-- グリッド内の縦並び要素は `display:flex; flex-direction:column; gap:10px`
-- 画像エリアに `flex:1; min-height:0; overflow:hidden` → 自然に収まる
-- `flex-shrink:0` をテーブル・バナー・.al に付けてコンテンツを守る
-- CTA等の縦センタリング: `flex:1; justify-content:flex-end`で下揃え
 
 ### フッター
 - **高さ**: 36px（`position: absolute; bottom: 0`）
-- `.body` の `padding-bottom` でフッターと重ならないよう確保
+- `.body` の `padding-bottom: 46px` でフッターと重ならないよう確保
